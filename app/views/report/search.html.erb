@@ -1,0 +1,6 @@
+<h1>Please pick a branch</h1>
+
+<%= form_tag report_thank_you_path do %>
+  <%= collection_select :branch, :id, Branch.all, :id, :name %>
+  <%= submit_tag %>
+<% end %>

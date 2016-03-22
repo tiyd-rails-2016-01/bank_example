@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  balance: 9.99
+  account_number: 1
+  branch_id: 1
+
+two:
+  owner: MyString
+  balance: 9.99
+  account_number: 1
+  branch_id: 1
