@@ -1,11 +1,19 @@
+require 'csv'
+
 class MakeReportJob < ActiveJob::Base
   queue_as :emails
 
   def perform(*args)
-    File.open("mason.txt", 'w') do |f|
-      f << "This class is awesome.  They picked #{args[0].name}."
-      f << "They love baked goods."
-      f << "They made this stupid unicorn thing."
+    branch = Branch.find(args[0])
+    file_path = Rails.root.join("tmp", "report#{rand(10000)}.csv")
+    CSV.open(file_path, "w") do |csv|
+      csv << ["Branch Name", "Account Owner", "Payee", "Amount", "When"]
+      branch.accounts.each do |a|
+        a.expenses.each do |e|
+          csv << [branch.name, a.owner, e.payee, e.amount, e.paid_at]
+        end
+      end
     end
+    ReportMailer.send_report(file_path).deliver_now
   end
 end
