@@ -13,6 +13,10 @@ class ReportController < ApplicationController
   end
 
   def send_email
-    ReportMailer.invite_friend(params[:address]).deliver_later(wait_until: Time.now.end_of_day)
+    File.open("tmp/temp.png", "wb") do |file|
+      file.write(params[:file].read)
+    end
+
+    # ReportMailer.invite_friend(params[:address]).deliver_later(wait_until: Time.now.end_of_day)
   end
 end

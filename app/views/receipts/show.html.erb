@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Expense:</strong>
+  <%= @receipt.expense_id %>
+</p>
+
+<%= image_tag @receipt.uploaded_file %>
+
+<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to 'Back', receipts_path %>

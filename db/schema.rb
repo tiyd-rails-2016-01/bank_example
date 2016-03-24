@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322154024) do
+ActiveRecord::Schema.define(version: 20160324142656) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "owner"
@@ -57,5 +57,17 @@ ActiveRecord::Schema.define(version: 20160322154024) do
   end
 
   add_index "expenses", ["account_id"], name: "index_expenses_on_account_id"
+
+  create_table "receipts", force: :cascade do |t|
+    t.integer  "expense_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "uploaded_file_file_name"
+    t.string   "uploaded_file_content_type"
+    t.integer  "uploaded_file_file_size"
+    t.datetime "uploaded_file_updated_at"
+  end
+
+  add_index "receipts", ["expense_id"], name: "index_receipts_on_expense_id"
 
 end

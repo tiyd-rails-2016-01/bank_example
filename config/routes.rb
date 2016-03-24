@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :receipts
   root 'report#search'
 
   get 'report/search'
